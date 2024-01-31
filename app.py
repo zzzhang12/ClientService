@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
 import requests
+import os
 
 app = Flask(__name__)
 
 # Replace with the URL of your deployed Flask app
-BOOKS_API_URL = 'http://zhangz-book-api-server.d5efebd7h9asdbg8.uksouth.azurecontainer.io:5000/books'
+BOOKS_API_URL = os.getenv('BOOKS_API_URL')
 
 @app.route('/books', methods=['GET'])
 def get_books():
