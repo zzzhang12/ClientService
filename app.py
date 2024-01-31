@@ -17,22 +17,27 @@ def get_books():
     author_query = request.args.get('author')
     year_query = request.args.get('year')
     title_query = request.args.get('title')
-    
-    response = requests.get(BOOKS_API_URL)
-    if response.ok:
-        books = response.json()
-        
-        # If a genre query parameter is provided, filter books by genre
-        if genre_query:
-            books = [book for book in books if genre_query.lower() in book['genre'].lower()]
 
-        # If no genre is specified, return the third book as default
-        if not genre_query and len(books) >= 3:
-            return jsonify(books[2])  # Return only the third book
-        
-        return jsonify(books)
+    params = {
+        'genre': genre_query,
+        'author': author_query,
+        'publication_year': year_query,
+        'title': title_query
+    }
+    
+    response = requests.get(BOOKS_API_URL, params=params)
+    if response.ok:
+        if response.ok:
+            data = response.json()
+        if 'message' in data:
+            # If the message key is in the response, render a template with the message and books
+            return render_template('books.html', message=data['message'], books=data['books'])
+        else:
+            # Normal book list rendering
+            return render_template('books.html', books=data)
     else:
         return jsonify({'error': 'Could not retrieve books from the API'}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
