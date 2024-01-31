@@ -2,19 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .books-list {
+            list-style: none;
+            padding: 0;
+        }
+        .book-item {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .new-search-link {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Book Search Results</h1>
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
-    <ul>
-        {% for book in books %}
-            <li>{{ book['title'] }} by {{ book['author'] }} ({{ book['publication_year'] }}) - Genre: {{ book['genre'] }}</li>
-        {% endfor %}
-    </ul>
-    <a href="/">New Search</a>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Book Search Results</h1>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <ul class="books-list">
+            {% for book in books %}
+                <li class="book-item">
+                    <h4>{{ book['title'] }}</h4>
+                    <p><strong>Author:</strong> {{ book['author'] }}</p>
+                    <p><strong>Genre:</strong> {{ book['genre'] }}</p>
+                    <p><strong>Year:</strong> {{ book['publication_year'] }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="new-search-link">New Search</a>
+    </div>
 </body>
 </html>

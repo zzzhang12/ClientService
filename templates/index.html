@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width", initial-scale="1.0">
-        <title>Book Search</title>
-    </head>
-    <body>
-        <h1>Book Search</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4">Book Search</h1>
         <form action="/books" method="get">
-            <label for="titlefield">Title:</label>
-            <input type="text" id="titlefield" name="title">
-            <label for="genrefield">Genre:</label>
-            <input type="text" id="genrefield" name="genre">
-            <label for="authorfield">Author:</label>
-            <input type="text" id="authorfield" name="author">
-            <label for="yearfield">Year:</label>
-            <input type="text" id="yearfield" name="year">
-            <input type="submit" value="Search">
+            <div class="form-group">
+                <label for="titlefield">Title:</label>
+                <input type="text" class="form-control" id="titlefield" name="title">
+            </div>
+            <div class="form-group">
+                <label for="genrefield">Genre:</label>
+                <input type="text" class="form-control" id="genrefield" name="genre">
+            </div>
+            <div class="form-group">
+                <label for="authorfield">Author:</label>
+                <input type="text" class="form-control" id="authorfield" name="author">
+            </div>
+            <div class="form-group">
+                <label for="yearfield">Year:</label>
+                <input type="text" class="form-control" id="yearfield" name="year">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
         </form>
-    </body>
+    </div>
+</body>
 </html>
