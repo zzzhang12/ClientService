@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import requests
 import os
 
@@ -7,9 +7,17 @@ app = Flask(__name__)
 # Replace with the URL of your deployed Flask app
 BOOKS_API_URL = os.getenv('BOOKS_API_URL')
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/books', methods=['GET'])
 def get_books():
     genre_query = request.args.get('genre')
+    author_query = request.args.get('author')
+    year_query = request.args.get('year')
+    title_query = request.args.get('title')
+    
     response = requests.get(BOOKS_API_URL)
     if response.ok:
         books = response.json()
