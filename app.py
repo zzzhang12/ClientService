@@ -24,7 +24,7 @@ def get_books():
         'publication_year': year_query,
         'title': title_query
     }
-    
+
     response = requests.get(BOOKS_API_URL, params=params)
     if response.ok:
         if response.ok:
